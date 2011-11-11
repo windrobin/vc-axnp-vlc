@@ -167,7 +167,9 @@ static void handle_changed_event(const libvlc_event_t* event, void *param)
             break;
 #endif
         case libvlc_MediaPlayerTimeChanged:
-            DOUBLE_TO_NPVARIANT(event->u.media_player_time_changed.new_time, npparam[0]);
+            DOUBLE_TO_NPVARIANT(
+                static_cast<double>(event->u.media_player_time_changed.new_time),
+                npparam[0]);
             break;
         case libvlc_MediaPlayerPositionChanged:
             DOUBLE_TO_NPVARIANT(event->u.media_player_position_changed.new_position, npparam[0]);
@@ -182,7 +184,9 @@ static void handle_changed_event(const libvlc_event_t* event, void *param)
             BOOLEAN_TO_NPVARIANT(event->u.media_player_title_changed.new_title, npparam[0]);
             break;
         case libvlc_MediaPlayerLengthChanged:
-            DOUBLE_TO_NPVARIANT(event->u.media_player_length_changed.new_length, npparam[0]);
+            DOUBLE_TO_NPVARIANT(
+                static_cast<double>(event->u.media_player_length_changed.new_length),
+                npparam[0]);
             break;
         default: /* ignore all other libvlc_event_type_t */
             NPN_MemFree( npparam );

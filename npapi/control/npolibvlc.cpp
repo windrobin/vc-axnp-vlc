@@ -267,7 +267,7 @@ LibvlcAudioNPObject::getProperty(int index, NPVariant &result)
         {
             case ID_audio_mute:
             {
-                bool muted = libvlc_audio_get_mute(p_md);
+                bool muted = libvlc_audio_get_mute(p_md)!=0;
                 BOOLEAN_TO_NPVARIANT(muted, result);
                 return INVOKERESULT_NO_ERROR;
             }
