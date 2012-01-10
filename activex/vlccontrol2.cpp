@@ -709,7 +709,7 @@ STDMETHODIMP VLCVideo::get_fullscreen(VARIANT_BOOL* fullscreen)
     HRESULT hr = getMD(&p_md);
     if( SUCCEEDED(hr) )
     {
-        *fullscreen = varbool( libvlc_get_fullscreen(p_md) );
+        *fullscreen = varbool( libvlc_get_fullscreen(p_md)!=0 );
     }
     return hr;
 };
@@ -1294,7 +1294,7 @@ STDMETHODIMP VLCControl2::get_AutoLoop(VARIANT_BOOL *autoloop)
     if( NULL == autoloop )
         return E_POINTER;
 
-    *autoloop = varbool( _p_instance->getAutoLoop() );
+    *autoloop = varbool( _p_instance->getAutoLoop()!=FALSE );
     return S_OK;
 };
 
@@ -1309,7 +1309,7 @@ STDMETHODIMP VLCControl2::get_AutoPlay(VARIANT_BOOL *autoplay)
     if( NULL == autoplay )
         return E_POINTER;
 
-    *autoplay = varbool( _p_instance->getAutoPlay() );
+    *autoplay = varbool( _p_instance->getAutoPlay()!=FALSE );
     return S_OK;
 };
 
@@ -1422,7 +1422,7 @@ STDMETHODIMP VLCControl2::get_Visible(VARIANT_BOOL *isVisible)
     if( NULL == isVisible )
         return E_POINTER;
 
-    *isVisible = varbool( _p_instance->getVisible() );
+    *isVisible = varbool( _p_instance->getVisible()!=FALSE );
 
     return S_OK;
 };
