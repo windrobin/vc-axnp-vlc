@@ -40,10 +40,8 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ProjectName).tlb"
-				OutputDirectory="$(InputDir)"
-				HeaderFileName="$(InputName)_idl.h"
-				InterfaceIdentifierFileName="$(InputName)_idl.c"
+				HeaderFileName="$(InputDir)$(InputName)_idl.h"
+				InterfaceIdentifierFileName="$(InputDir)$(InputName)_idl.c"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -62,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="../../../activex"
+				AdditionalIncludeDirectories="$(IntDir);../../../activex"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -142,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="../../../activex"
+				AdditionalIncludeDirectories="$(IntDir);../../../activex"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -200,10 +198,8 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ProjectName).tlb"
-				OutputDirectory="$(InputDir)"
-				HeaderFileName="$(InputName)_idl.h"
-				InterfaceIdentifierFileName="$(InputName)_idl.c"
+				HeaderFileName="$(InputDir)$(InputName)_idl.h"
+				InterfaceIdentifierFileName="$(InputDir)$(InputName)_idl.c"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
