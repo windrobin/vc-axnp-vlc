@@ -115,6 +115,14 @@ public:
     };
     BSTR getMRL(void) { return _bstr_mrl; };
 
+    void setInputSlave(BSTR input_slave)
+    {
+        SysFreeString(_bstr_input_slave);
+        _bstr_input_slave = SysAllocStringLen( input_slave, SysStringLen(input_slave) );
+        setDirty(TRUE);
+    };
+    BSTR getInputSlave(void) { return _bstr_input_slave; };
+
     inline void setAutoPlay(BOOL autoplay)
     {
         set_autoplay(autoplay != FALSE);
@@ -385,6 +393,8 @@ private:
     int  _i_time;
     SIZEL _extent;
     OLE_COLOR _i_backcolor;
+    BSTR _bstr_input_slave;
+
     // indicates whether properties needs persisting
     BOOL _b_dirty;
 };

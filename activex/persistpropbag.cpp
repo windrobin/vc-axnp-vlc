@@ -219,6 +219,13 @@ STDMETHODIMP VLCPersistPropertyBag::Load(LPPROPERTYBAG pPropBag, LPERRORLOG pErr
         VariantClear(&value);
     }
 
+    V_VT(&value) = VT_BSTR;
+    if( S_OK == pPropBag->Read(OLESTR("InputSlave"), &value, pErrorLog) )
+    {
+        _p_instance->setInputSlave(V_BSTR(&value));
+        VariantClear(&value);
+    }
+
     return _p_instance->onLoad();
 };
 
@@ -288,6 +295,12 @@ STDMETHODIMP VLCPersistPropertyBag::Save(LPPROPERTYBAG pPropBag, BOOL fClearDirt
     V_VT(&value) = VT_BOOL;
     V_BOOL(&value) = _p_instance->get_options().get_enable_fs()? VARIANT_TRUE : VARIANT_FALSE;
     pPropBag->Write(OLESTR("FullscreenEnabled"), &value);
+    VariantClear(&value);
+
+    V_VT(&value) = VT_BSTR;
+    V_BSTR(&value) = SysAllocStringLen(_p_instance->getInputSlave(),
+                            SysStringLen(_p_instance->getInputSlave()));
+    pPropBag->Write(OLESTR("InputSlave"), &value);
     VariantClear(&value);
 
     if( fClearDirty )

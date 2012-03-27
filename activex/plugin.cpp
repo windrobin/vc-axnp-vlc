@@ -313,6 +313,7 @@ VLCPlugin::~VLCPlugin()
 
     SysFreeString(_bstr_mrl);
     SysFreeString(_bstr_baseurl);
+    SysFreeString(_bstr_input_slave);
 
     if( _p_libvlc )  { libvlc_release(_p_libvlc); _p_libvlc=NULL; }
 
@@ -408,6 +409,7 @@ HRESULT VLCPlugin::onInit(void)
         _i_volume     = 50;
         _i_time       = 0;
         _i_backcolor  = 0;
+        _bstr_input_slave = NULL;
         // set default/preferred size (320x240) pixels in HIMETRIC
         HDC hDC = CreateDevDC(NULL);
         _extent.cx = 320;
@@ -523,7 +525,20 @@ void VLCPlugin::initVLC()
     ppsz_argv[ppsz_argc++] = "--intf=dummy";
     ppsz_argv[ppsz_argc++] = "--no-video-title-show";
 
+
+    char *psz_input_slave = NULL;
+    if( SysStringLen(_bstr_input_slave) > 0 ) {
+        psz_input_slave = CStrFromBSTR(CP_UTF8, _bstr_input_slave);
+        if( psz_input_slave ) {
+            ppsz_argv[ppsz_argc++] = "--input-slave";
+            ppsz_argv[ppsz_argc++] = psz_input_slave;
+        }
+    }
+
     _p_libvlc = libvlc_new(ppsz_argc, ppsz_argv);
+
+    CoTaskMemFree(psz_input_slave);
+
     if( !_p_libvlc )
         return;
 

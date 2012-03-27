@@ -420,6 +420,8 @@ public:
     STDMETHODIMP get_subtitle(IVLCSubtitle**);
     STDMETHODIMP get_video(IVLCVideo**);
     STDMETHODIMP get_mediaDescription(IVLCMediaDescription**);
+    STDMETHODIMP get_inputSlave(BSTR *InputSlave);
+    STDMETHODIMP put_inputSlave(BSTR InputSlave);
 
 protected:
     HRESULT loadTypeInfo();

@@ -698,6 +698,11 @@ library AXVLC
 
         [propget, helpstring("Returns the media description object.")]
         HRESULT mediaDescription([out, retval] IVLCMediaDescription** obj);
+
+        [propget]
+        HRESULT inputSlave([out, retval] BSTR* InputSlave);
+        [propput]
+        HRESULT inputSlave([in] BSTR InputSlave);
     };
 
     [

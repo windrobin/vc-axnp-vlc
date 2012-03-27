@@ -1492,3 +1492,20 @@ STDMETHODIMP VLCControl2::get_mediaDescription(IVLCMediaDescription** obj)
 {
     return object_get<IVLCMediaDescription>(obj, &_p_vlcmedia_desc);
 }
+
+STDMETHODIMP VLCControl2::get_inputSlave(BSTR *InputSlave)
+{
+    if( NULL == InputSlave )
+        return E_POINTER;
+
+    *InputSlave = SysAllocStringLen(_p_instance->getInputSlave(),
+                       SysStringLen(_p_instance->getInputSlave()));
+    return NOERROR;
+};
+
+STDMETHODIMP VLCControl2::put_inputSlave(BSTR InputSlave)
+{
+    _p_instance->setInputSlave(InputSlave);
+
+    return S_OK;
+};
