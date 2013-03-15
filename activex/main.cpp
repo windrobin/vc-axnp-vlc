@@ -196,7 +196,7 @@ static HRESULT RegisterClassID(HKEY hParent, REFCLSID rclsid, unsigned int versi
     _stprintf(progId, TEXT("%s.%u"), PROGID_STR, version);
 
     TCHAR description[sizeof(DESCRIPTION)/sizeof(TCHAR)+16];
-    _stprintf(description, TEXT("%s v%u"), TEXT(DESCRIPTION), version);
+    _stprintf(description, TEXT("%s v%u"), DESCRIPTION, version);
 
     HKEY hClassKey;
     {
